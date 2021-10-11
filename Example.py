@@ -12,29 +12,7 @@ def go():
     c.move(snake, game.x, game.y)
     c.after(100, go)
 
-def goUp():
-    if game.y > 0:
-        return
-    game.x = 0
-    game.y = -30
 
-def goDown():
-    if game.y < 0:
-        return
-    game.x = 0
-    game.y = 30
-
-def goLeft():
-    if game.x > 0:
-        return
-    game.x = -30
-    game.y = 0
-
-def goRight():
-    if game.x < 0:
-        return
-    game.x = 30
-    game.y = 0
 
 snake = c.create_rectangle(400, 400, 430, 430, fill='green')
 # ball = c.create_oval(40, 140, 160, 160,
@@ -44,13 +22,13 @@ game = GameSnake(0, -20)
 go()
 
 c.bind('<Up>',
-       lambda event: goUp())
+       lambda event: game.goUp())
 c.bind('<Down>',
-       lambda event: goDown())
+       lambda event: game.goDown())
 c.bind('<Left>',
-       lambda event: goLeft())
+       lambda event: game.goLeft())
 c.bind('<Right>',
-       lambda event: goRight())
+       lambda event: game.goRight())
 #
 
 root.mainloop()
