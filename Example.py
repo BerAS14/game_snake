@@ -1,31 +1,57 @@
-from tkinter import *
+from tkinter import Tk, Canvas
+
+from gameSnake import GameSnake
 
 root = Tk()
-c = Canvas(width=300, height=300,
+c = Canvas(width=1000, height=1000,
            bg='white')
 c.focus_set()
 c.pack()
 
-def go(x, y):
+def go():
+    c.move(snake, game.x, game.y)
+    c.after(100, go)
 
-    # c.after(1000, c.move(ball, 0, -2))
-    c.move(ball, x, y)
-    c.after(100, go, x, y)
-    # if count != 0:
-    #     count -= 1
-    #     go(count)
+def goUp():
+    if game.y > 0:
+        return
+    game.x = 0
+    game.y = -30
 
-ball = c.create_oval(140, 140, 160, 160,
-                     fill='green')
+def goDown():
+    if game.y < 0:
+        return
+    game.x = 0
+    game.y = 30
+
+def goLeft():
+    if game.x > 0:
+        return
+    game.x = -30
+    game.y = 0
+
+def goRight():
+    if game.x < 0:
+        return
+    game.x = 30
+    game.y = 0
+
+snake = c.create_rectangle(400, 400, 430, 430, fill='green')
+# ball = c.create_oval(40, 140, 160, 160,
+#                      fill='green')
+
+game = GameSnake(0, -20)
+go()
+
 c.bind('<Up>',
-       lambda event: go(0, -2))
+       lambda event: goUp())
 c.bind('<Down>',
-       lambda event: go(0, 2))
+       lambda event: goDown())
 c.bind('<Left>',
-       lambda event: go(-2, 0))
+       lambda event: goLeft())
 c.bind('<Right>',
-       lambda event: go(2, 0))
-
+       lambda event: goRight())
+#
 
 root.mainloop()
 
