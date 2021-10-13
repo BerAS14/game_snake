@@ -5,6 +5,10 @@ class Point(object):
         self.x = x
         self.y = y
 
+    def __repr__(self):
+        return str(vars(self))
+
+
 if __name__ == "__main__":
     pointHadSnake = Point(100, 100)
     print(pointHadSnake.x)
