@@ -11,4 +11,5 @@ class Point(object):
 
 if __name__ == "__main__":
     pointHadSnake = Point(100, 100)
-    print(pointHadSnake.x)
+    print(pointHadSnake.get_xy())
+
