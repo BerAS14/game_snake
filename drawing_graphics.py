@@ -25,15 +25,16 @@ class DrawingGraphics(object):
         self.controller.game_init()
         self.snake = []
         for i, point in enumerate(self.controller.state.snake):
-
             screen_x, screen_y = transform_coordinate(point.x, point.y, self.controller.state.field[0], self.controller.state.field[1])
             screen_width, screen_height = self.get_size_rectangle()
             color = DrawingGraphics.color_snake if i > 0 else DrawingGraphics.color_head_snake
             self.snake.append(self.c.create_rectangle(screen_x, screen_y, screen_x + screen_width, screen_y + screen_height, fill=color))
 
         self.go()
+
         self.c.bind('<KeyRelease-space>',
                     lambda event: self.controller.start())
+
         self.c.bind('<Up>',
                     lambda event: self.controller.go_up())
         self.c.bind('<Down>',

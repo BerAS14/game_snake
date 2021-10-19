@@ -4,7 +4,7 @@ class StateGameSnake(object):
         self.snake = []
         self.direction = ''
         self.game_started = False
-        self.count_step = 0
+        self.step_over = False
         self.game_over = True
 
     def __repr__(self):
