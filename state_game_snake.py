@@ -5,7 +5,6 @@ class StateGameSnake(object):
         self.direction = ''
         self.game_started = False
         self.step_over = False
-        self.game_over = True
 
     def __repr__(self):
         return str(vars(self))

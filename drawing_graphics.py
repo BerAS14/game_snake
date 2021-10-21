@@ -43,6 +43,7 @@ class DrawingGraphics(object):
                     lambda event: self.controller.go_left())
         self.c.bind('<Right>',
                     lambda event: self.controller.go_right())
+
         root.mainloop()
 
     def go(self):
