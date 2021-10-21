@@ -1,6 +1,7 @@
 import unittest
 from controller_game_snake import ControllerGameSnake
 from drawing_graphics import transform_coordinate
+from point import Point
 
 
 def fun(x):
@@ -142,3 +143,7 @@ class MyTest(unittest.TestCase):
         self.game.do_step()
         print(self.game.state.snake[0])
         self.assertEqual(True, self.game.state.game_over)
+
+    def test_compare_equal_points(self):
+        point = Point(3, 5)
+        self.assertEqual(Point(3, 5), point)

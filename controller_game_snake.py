@@ -105,7 +105,13 @@ class ControllerGameSnake(object):
         if not 0 < head_point.y <= self.state_height:
             self.state.game_over = True
             return True
+        if self.state.snake.count(head_point) == 1:
+            self.state.game_over = True
+            return True
         return False
+
+
+
 
 
 

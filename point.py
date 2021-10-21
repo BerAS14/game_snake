@@ -7,3 +7,8 @@ class Point(object):
 
     def __repr__(self):
         return str(vars(self))
+
+    def __eq__(self, other):
+        if isinstance(other, Point):
+            return self.x == other.x and self.y == other.y
+        return NotImplemented
