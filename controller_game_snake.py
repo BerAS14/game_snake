@@ -15,8 +15,14 @@ class ControllerGameSnake(object):
         y_center = self.state.field[1] // 2
         return x_center, y_center
 
-    def start(self):
-        self.state.game_started = True
+    def start_pause_new_game(self):
+        if self.state.game_over:
+            self.game_init()
+            self.state.game_started = True
+        if not self.state.game_started:
+            self.state.game_started = True
+        else:
+            self.state.game_started = False
 
     def do_step(self):
         if not self.state.game_started:
@@ -26,13 +32,11 @@ class ControllerGameSnake(object):
             if not self.check_game_over(head_point):
                 self.state.snake.pop()
                 self.state.snake.insert(0, head_point)
-
         if self.state.direction == 'Down':
             head_point = Point(self.head_x, self.head_y - 1)
             if not self.check_game_over(head_point):
                 self.state.snake.pop()
                 self.state.snake.insert(0, head_point)
-
         if self.state.direction == 'Left':
             head_point = Point(self.head_x - 1, self.head_y)
             if not self.check_game_over(head_point):
@@ -52,6 +56,7 @@ class ControllerGameSnake(object):
             self.state.snake.append(Point(snake_head_x - i, snake_head_y))
         self.state.direction = 'Right'
         self.state.step_over = False
+        self.state.game_over = False
 
     def go_up(self):
         if self.state.direction == 'Down' or not self.state.step_over:
@@ -95,8 +100,10 @@ class ControllerGameSnake(object):
 
     def check_game_over(self, head_point):
         if not 0 <= head_point.x < self.state_width:
+            self.state.game_over = True
             return True
         if not 0 < head_point.y <= self.state_height:
+            self.state.game_over = True
             return True
         return False
 

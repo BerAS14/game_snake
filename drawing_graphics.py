@@ -33,8 +33,7 @@ class DrawingGraphics(object):
         self.go()
 
         self.c.bind('<KeyRelease-space>',
-                    lambda event: self.controller.start())
-
+                    lambda event: self.controller.start_pause_new_game())
         self.c.bind('<Up>',
                     lambda event: self.controller.go_up())
         self.c.bind('<Down>',
