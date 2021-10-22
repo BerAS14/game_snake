@@ -5,14 +5,15 @@ from point import Point
 class ControllerGameSnake(object):
     def __init__(self):
         self.state = StateGameSnake()
-        self.state.field = [23, 17, 'white']
+        self.state.field = [24, 18, 'white']
+        self.length_snake = 5
 
     def __repr__(self):
         return str(vars(self))
 
     def get_center(self):
-        x_center = self.state.field[0] // 2
-        y_center = self.state.field[1] // 2
+        x_center = round(self.state.field[0] / 2)
+        y_center = round(self.state.field[1] / 2)
         return x_center, y_center
 
     def start_pause_new_game(self):
@@ -52,7 +53,7 @@ class ControllerGameSnake(object):
     def game_init(self):
         snake_head_x, snake_head_y = self.get_center()
         self.state.snake = []
-        for i in range(5):
+        for i in range(self.length_snake):
             self.state.snake.append(Point(snake_head_x - i, snake_head_y))
         self.state.direction = 'Right'
         self.state.step_over = False
@@ -105,7 +106,7 @@ class ControllerGameSnake(object):
         if not 0 < head_point.y <= self.state_height:
             self.state.game_over = True
             return True
-        if self.state.snake.count(head_point) == 1:
+        if 1 <= self.state.snake[:-1].count(head_point):
             self.state.game_over = True
             return True
         return False

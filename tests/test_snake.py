@@ -147,3 +147,20 @@ class MyTest(unittest.TestCase):
     def test_compare_equal_points(self):
         point = Point(3, 5)
         self.assertEqual(Point(3, 5), point)
+
+    def test_game_over_self_crossing(self):
+        self.game.state.game_started = True
+        self.game.do_step()
+        self.game.go_down()
+        self.game.do_step()
+        self.game.go_left()
+        self.game.do_step()
+        self.game.do_step()
+        self.assertEqual(False, self.game.state.game_over)
+        self.game.go_up()
+        self.game.do_step()
+        self.game.go_right()
+        self.game.do_step()
+        self.game.go_down()
+        self.game.do_step()
+        self.assertEqual(True, self.game.state.game_over)
